@@ -3,20 +3,20 @@ pipeline {
     
     environment {
         DOCKER_HOST = "npipe:////./pipe/docker_engine" // Windows Docker endpoint
-        DOCKER_IMAGE = "sushilicp/my-web-app"
+        DOCKER_IMAGE = "milan-koirala/my-web-app"
         DOCKER_TAG = "${env.BUILD_ID ?: 'latest'}"
         CONTAINER_NAME = "my-web-app-${env.BUILD_NUMBER}"
         GOOGLE_CHAT_WEBHOOK = credentials('google-chat-webhook') // Secure webhook
-        DEPLOYMENT_URL = "http://localhost:8088"
+        DEPLOYMENT_URL = "http://localhost:8082"
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
-        HOST_PORT = "8088"
+        HOST_PORT = "8082"
     }
 
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main', 
-                    url: 'https://github.com/sushilicp/html-demo.git',
+                    url: 'https://github.com/milan-koirala/jenkins-practice-summer',
                     credentialsId: ''
             }
         }
